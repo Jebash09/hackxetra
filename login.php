@@ -1,14 +1,14 @@
 <?php session_start() ?>
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
     <title>Sign Up</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
@@ -177,29 +177,6 @@
   </body>
 </html>
 
-=======
-<div class="container-fluid">
-	<form action="" id="login-frm">
-		<div class="form-group">
-			<label for="" class="control-label">Email</label>
-			<input type="email" name="username" required="" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="" class="control-label">Password</label>
-			<input type="password" name="password" required="" class="form-control">
-			<small><a href="index.php?page=signup" id="new_account">Create New Account</a></small>
-		</div>
-		<button class="button btn btn-info btn-sm">Login</button>
-	</form>
-</div>
->>>>>>> ea8d1b2ad138b4a391796485f4e315e2fba855aa
-
-<style>
-	#uni_modal .modal-footer{
-		display:none;
-	}
-</style>
-
 <script>
 	$('#login-frm').submit(function(e){
 		e.preventDefault()
@@ -228,4 +205,5 @@
 			}
 		})
 	})
+
 </script>
