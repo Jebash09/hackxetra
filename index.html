@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>TUAC</title>
+    <style>
+        /* Basic style for the h2 element */
+        h2 {
+            font-family: 'Courier New', Courier, monospace; /* Typewriter-style font */
+            font-size: 2rem; /* Default font size, will scale with screen size */
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            /* Ensure the text stays within the screen */
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white; /* Simulating the typing cursor */
+        }
+
+        /* Typing animation */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Stop the cursor blinking after the text is fully typed */
+        h2.typing {
+            animation: typing 4s steps(40) 1s forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        /* Cursor blinking effect */
+        @keyframes blink-caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Sliding menu */
+        .slide-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            width: 250px;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-x: hidden;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+
+        .slide-menu.open {
+            left: 0;
+        }
+
+        /* Styling the links inside the menu */
+        .slide-menu a,
+        .slide-menu .btn {
+            padding: 16px;
+            text-decoration: none;
+            font-size: 24px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .slide-menu a:hover,
+        .slide-menu .btn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Close button inside menu */
+        .menu-close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Ensure navbar content is in a row on mobile */
+        @media (max-width: 768px) {
+            .navbar-links {
+                width: 100vw;
+                gap: 1rem; /* Add spacing between items */
+                justify-content: space-between; /* Evenly space out the items */
+            }
+
+            .navbar-links a {
+                padding: 8px 16px; /* Adjust padding for better click area on mobile */
+            }
+
+            /* Style buttons inside the menu */
+            .slide-menu .btn {
+                background-color: transparent;
+                color: #ddd;
+                font-size: 20px;
+                text-align: center;
+                border-radius: 5px;
+                margin-top: 16px;
+                margin-right: 16px;
+            }
+
+            .slide-menu .btn:hover {
+                background-color: #ddd;
+                color: black;
+            }
+            .container {
+                width: 100vw;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+    <section class="bg-current h-screen w-screen brightness-50" style="background-image: url(https://i.ibb.co/SdtTcP2/Picsart-24-11-09-09-03-27-460.jpg); background-attachment: fixed; background-repeat: no-repeat;background-size: cover;">
+        <header class="bg-white text-gray-600 body-font h-1/5">
+            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+                <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                    <span class="text-xl">TUAC</span>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-toggle" class="md:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <nav class="navbar-links md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center hidden md:flex">
+                    <a class="mr-5 hover:text-gray-900">Home</a>
+                    <a class="mr-5 hover:text-gray-900">About</a>
+                    <a class="mr-5 hover:text-gray-900">Scholarship</a>
+                    <a class="mr-5 hover:text-gray-900">Gallery</a>
+                    <a class="mr-5 hover:text-gray-900">Alumni Team</a>
+                    <a class="mr-5 hover:text-gray-900">Services</a>
+                    <div style="position: relative; left: 80px ;" class="flex-row space-between w-auto">
+                        <button><a class="hover:text-gray-900">Sign In</a></button>
+                        <button class="ml-8"><a class="hover:text-gray-900">Register</a>
+                        </button>
+                    </div>
+
+                    
+                </nav>
+            </div>
+        </header>
+
+        <!-- Sliding Menu -->
+        <div id="menu" class="slide-menu">
+            <span id="menu-close-btn" class="menu-close-btn">&times;</span>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Scholarship</a>
+            <a href="#">Gallery</a>
+            <a href="#">Alumni Team</a>
+            <a href="#">Services</a>
+            <!-- Add buttons inside the menu -->
+            <a href="#" class="btn bg-black ml-4">Sign In</a>
+            <a href="#" class="btn bg-black">Register</a>
+
+        </div>
+
+        <div class="w-screen flex flex-col h-4/5 ">
+            <h1 class="text-white font-bold mt-32 ml-8 md:ml-32 text-3xl sm:text-4xl lg:text-5xl">Tezpur University Alumni Club</h1>
+            <div class="w-screen">
+                <h2 id="typing-text" class=" hell text-white text-lg sm:text-xl md:text-2xl ml-8 md:ml-32 lg:text-3xl">A place where we can be together again!</h2>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Toggle the menu when the button is clicked
+        const menuToggleButton = document.getElementById("menu-toggle");
+        const menu = document.getElementById("menu");
+        const closeMenuButton = document.getElementById("menu-close-btn");
+
+        menuToggleButton.addEventListener("click", function() {
+            menu.classList.toggle("open");
+        });
+
+        closeMenuButton.addEventListener("click", function() {
+            menu.classList.remove("open");
+        });
+
+        // Apply typing animation to h2 when the page loads
+        window.addEventListener("DOMContentLoaded", function() {
+            const typingText = document.getElementById("typing-text");
+            typingText.classList.add("typing");
+        });
+
+    
+        window.addEventListener('DOMContentLoaded', (event) => {
+  function isMobile() {
+    return window.innerWidth <= 768; 
+  }
+
+  function changeText() {
+    const header = document.getElementById('typing-text');
+    
+    if (isMobile()) {
+      header.innerHTML = 'A place where <br>we can be together again !';
+    } else {
+      header.innerHTML = 'A place where we can be together !';
+    }
+  }
+
+  changeText();
+
+  window.addEventListener('resize', changeText);
+});
+
+
+
+
+
+
+
+
+    </script>
+
+    <section class="h-screen w-screen p-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl">Why an Alumni Portal is Necessary for an Institution</h1>
+        <p class="mt-4 text-base sm:text-lg">An alumni portal is a valuable tool for any institution, offering numerous benefits that help strengthen the bond between the institution and its alumni. Here are some key reasons why an alumni portal is necessary:</p>
+    </section>
+
+    <footer class="bg-black w-screen body-font p-4 sm:p-8">
+        <div class="container mx-auto flex items-center sm:flex-row flex-col text-white">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                <span class="ml-3 text-xl">Tailblocks</span>
+            </a>
+            <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 Tailblocks —
+                <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@knyttneve</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
