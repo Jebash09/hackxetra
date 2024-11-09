@@ -32,15 +32,18 @@
         }
 
         /* Stop the cursor blinking after the text is fully typed */
-        h2.typing {
-            animation: typing 4s steps(40) 1s forwards, blink-caret 0.75s step-end infinite;
-        }
-
-        /* Cursor blinking effect */
         @keyframes blink-caret {
             50% {
                 border-color: transparent;
             }
+        }
+
+        h2.typing {
+            animation: typing 4s steps(40) 1s forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        h2.typing.completed {
+            animation: typing 4s steps(40) 1s forwards, blink-caret 0s step-end forwards;
         }
 
         /* Sliding menu */
@@ -145,13 +148,13 @@
                     <a class="mr-5 hover:text-gray-900">Scholarship</a>
                     <a class="mr-5 hover:text-gray-900">Gallery</a>
                     <a class="mr-5 hover:text-gray-900">Alumni Team</a>
-                    <a class="mr-5 hover:text-gray-900">Services</a>
+                    <a class="mr-5 hover:text-gray-900">Forum</a>
+                    <a class="mr-5 hover:text-gray-900">Event</a>
                     <div style="position: relative; left: 80px ;" class="flex-row space-between w-auto">
                         <button><a class="hover:text-gray-900">Sign In</a></button>
                         <button class="ml-8"><a class="hover:text-gray-900">Register</a>
                         </button>
                     </div>
-
                     
                 </nav>
             </div>
@@ -165,7 +168,8 @@
             <a href="#">Scholarship</a>
             <a href="#">Gallery</a>
             <a href="#">Alumni Team</a>
-            <a href="#">Services</a>
+            <a href="#">Forum</a>
+            <a href="#">Event</a>
             <!-- Add buttons inside the menu -->
             <a href="#" class="btn bg-black ml-4">Sign In</a>
             <a href="#" class="btn bg-black">Register</a>
@@ -198,36 +202,32 @@
         window.addEventListener("DOMContentLoaded", function() {
             const typingText = document.getElementById("typing-text");
             typingText.classList.add("typing");
+
+            // Set a timeout to add the 'completed' class after the typing animation is done
+            setTimeout(() => {
+                typingText.classList.add("completed");
+            }, 4000); // Match this timeout with the duration of your typing effect (in milliseconds)
         });
 
-    
         window.addEventListener('DOMContentLoaded', (event) => {
-  function isMobile() {
-    return window.innerWidth <= 768; 
-  }
+            function isMobile() {
+                return window.innerWidth <= 768; 
+            }
 
-  function changeText() {
-    const header = document.getElementById('typing-text');
-    
-    if (isMobile()) {
-      header.innerHTML = 'A place where <br>we can be together again !';
-    } else {
-      header.innerHTML = 'A place where we can be together !';
-    }
-  }
+            function changeText() {
+                const header = document.getElementById('typing-text');
+                
+                if (isMobile()) {
+                    header.innerHTML = 'A place where <br>we can be together again !';
+                } else {
+                    header.innerHTML = 'A place where we can be together !';
+                }
+            }
 
-  changeText();
+            changeText();
 
-  window.addEventListener('resize', changeText);
-});
-
-
-
-
-
-
-
-
+            window.addEventListener('resize', changeText);
+        });
     </script>
 
     <section class="h-screen w-screen p-4">
@@ -235,15 +235,91 @@
         <p class="mt-4 text-base sm:text-lg">An alumni portal is a valuable tool for any institution, offering numerous benefits that help strengthen the bond between the institution and its alumni. Here are some key reasons why an alumni portal is necessary:</p>
     </section>
 
-    <footer class="bg-black w-screen body-font p-4 sm:p-8">
-        <div class="container mx-auto flex items-center sm:flex-row flex-col text-white">
+    <footer class="text-gray-600 body-font" style="background-color: rgba(0, 0, 0, 0.719);">
+        <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+          <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-                <span class="ml-3 text-xl">Tailblocks</span>
+
+              <span class="ml-3 text-white text-xl">TUAC</span>
             </a>
-            <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 Tailblocks —
-                <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@knyttneve</a>
-            </p>
+            <p class="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+          </div>
+          <div class="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
+            <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3">EXPLORE</h2>
+              <nav class="list-none mb-10">
+                <li>
+                  <a class="text-white hover:text-gray-800">Home</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-gray-800">About</a>
+                  </li>
+                <li>
+                  <a class="text-white hover:text-gray-800">Scholarship</a>
+                </li>
+                <li>
+                  <a class="text-white hover:text-gray-800">Gallery</a>
+                </li>
+                <li>
+                  <a class="text-white hover:text-gray-800">Alumni Team</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-gray-800">Forum</a>
+                  </li>
+                  <li>
+                    <a class="text-white hover:text-gray-800">Event</a>
+                  </li>
+              </nav>
+            </div>
+            <div class=" p-8 rounded-lg shadow-lg text-center">
+                <!-- Phone Icon -->
+                <div class="text-4xl text-blue-500 mb-4">
+                    <svg class="h-20 ml-8 w-20 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>                </div>
+        
+                <!-- Phone Number -->
+                <a href="tel:+1234567890" class="text-xl font-semibold text-blue-600 hover:text-blue-800">
+                    +1 (234) 567-890
+                </a>
+            </div>
+            <div class=" p-8 rounded-lg shadow-lg text-center flex text-center justify-center items-center " >
+                <a href=""><svg class="h-20 w-20 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a>
+                <a href=""><svg class="h-20 w-20 text-gray-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a>
+                <a href=""><svg class="h-20 w-20 text-gray-500"  width="24" height="24" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg></a>
+            </div>
+            
+          </div>
         </div>
-    </footer>
+        <div class="bg-gray-100">
+          <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+            <p class=" text-sm text-center sm:text-left" style="color: rgba(0, 0, 0, 0.719);">© 2020 Tailblocks —
+              <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" style="color:rgba(0, 0, 0, 0.719) ;" class=" ml-1" target="_blank">@knyttneve</a>
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+              <a class="text-gray-500">
+                <svg fill="currentColor" style="color: rgba(0, 0, 0, 0.719);" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-500">
+                <svg fill="currentColor" style="color: rgba(0, 0, 0, 0.719);" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-500">
+                <svg fill="none" style="color: rgba(0, 0, 0, 0.719);" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-500">
+                <svg fill="currentColor" style="color: rgba(0, 0, 0, 0.719);" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                  <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </footer>
 </body>
 </html>
